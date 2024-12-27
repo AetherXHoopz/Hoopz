@@ -352,6 +352,5 @@ OrionLib:MakeNotification({
 	Time = 20
 })
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/tobi437a/Scripts/refs/heads/main/84728770023603b7182c0fb8.lua'))()
-
+loadstring(game:HttpGet('https://raw.githubusercontent.com/tobi437a/Scripts/refs/heads/main/a53c9c03f529d94ff43de35c.lua'))()
 OrionLib:Init()
