@@ -1,356 +1,246 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
- local Window = OrionLib:MakeWindow({Name = " 🎄 EternityK | Murder Mystery 2 🎁", HidePremium = false, IntroText = "Kursed X Gens", SaveConfig = true, ConfigFolder = "OrionTest"})
- 
- local Tab = Window:MakeTab({
-	Name = "Main",
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/MrGalaxy10/shlexware-Orion/main/PrivateSource",true))()
+local Window = OrionLib:MakeWindow({Name = "XR Hub", HidePremium = false, IntroText = "X3R0 R3B0RN", SaveConfig = true, ConfigFolder = "OrionTest"})
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+local Tab = Window:MakeTab({
+	Name = "Z3R0 R3B0RN",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
 local Section = Tab:AddSection({
-	Name = "LocalPlayer"
+	Name = "Silent Aim"
 })
 
+--[[
+Name = <string> - The name of the section.
+]]
+
+Tab:AddToggle({
+	Name = "High Arc",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+Tab:AddToggle({
+	Name = "Low Arc",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+Tab:AddToggle({
+	Name = "Realistic Arc",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+local Section = Tab:AddSection({
+	Name = "Mags"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+
+Tab:AddToggle({
+	Name = "Ball Reach",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
 
 Tab:AddSlider({
-	Name = "WalkSpeed",
-	Min = 16,
-	Max = 250,
+	Name = "Reach Distance",
+	Min = 5,
+	Max = 25,
 	Default = 5,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
-	ValueName = "Speed",
+	ValueName = "",
 	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+		print(Value)
 	end    
 })
 
+--[[
+Name = <string> - The name of the slider.
+Min = <number> - The minimal value of the slider.
+Max = <number> - The maxium value of the slider.
+Increment = <number> - How much the slider will change value when dragging.
+Default = <number> - The default value of the slider.
+ValueName = <string> - The text after the value number.
+Callback = <function> - The function of the slider.
+]]
+
+Tab:AddToggle({
+	Name = "Ball Magnet",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
 Tab:AddSlider({
-	Name = "JumpPower",
-	Min = 50,
-	Max = 275,
+	Name = "Magnet Distance",
+	Min = 5,
+	Max = 50,
 	Default = 5,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
-	ValueName = "Jump Height",
+	ValueName = "",
 	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+		print(Value)
 	end    
 })
 
-local Section = Tab:AddSection({
-	Name = "Controls"
-
-})
-
-Tab:AddButton({
-	Name = "PC Shiftlock",
-	Callback = function()
-      		loadstring(game:HttpGet('https://pastebin.com/raw/CjNsnSDy'))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Invisible",
-	Callback = function()
-      		OrionLib:MakeNotification({
-	Name = "EternityK | Cntrls",
-	Content = "You Are Now Invisible!",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-
-	end    
-})
+--[[
+Name = <string> - The name of the slider.
+Min = <number> - The minimal value of the slider.
+Max = <number> - The maxium value of the slider.
+Increment = <number> - How much the slider will change value when dragging.
+Default = <number> - The default value of the slider.
+ValueName = <string> - The text after the value number.
+Callback = <function> - The function of the slider.
+]]
 
 local Tab = Window:MakeTab({
-	Name = "Farming",
+	Name = "X3R0 R3B0RN V2",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
-local Section = Tab:AddSection({
-	Name = "AutoFarm"
-
-})
-Tab:AddButton({
-	Name = "Autofarm",
-	Callback = function()
-       loadstring(game:HttpGet("https://overdrivehub.odh.workers.dev/?d=auth&script=mm2_lite"))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Coin Aura",
-	Callback = function()
-loadstring(game:HttpGet("https://overdrivehub.odh.workers.dev/?d=auth&script=mm2_lite"))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Noclip",
-	Callback = function()
-	end    
-})
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
 
 local Section = Tab:AddSection({
-	Name = "Crates"
-
-})
-Tab:AddButton({
-	Name = "Auto Open Crates",
-	Callback = function()
-OrionLib:MakeNotification({
-	Name = "EternityK | Crates",
-	Content = "Must Be Higher Then Level 10 To Use This!",
-	Image = "rbxassetid://4483345998",
-	Time = 7
+	Name = "Features"
 })
 
-	end    
-})
-
-Tab:AddTextbox({
-	Name = "How Many To Open",
-	Default = "Number",
-	TextDisappear = false,
-	Callback = function(Value)
-	end
-	})
-local Tab = Window:MakeTab({
-	Name = "Visuals",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Section = Tab:AddSection({
-	Name = "People"
-
-})
-Tab:AddButton({
-	Name = "Outline All",
-	Callback = function()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Outline Sheriff",
-	Callback = function()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Outline Murderer",
-	Callback = function()
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Weapons"
-
-})
-
-Tab:AddButton({
-	Name = "Outline Gun",
-	Callback = function()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Trace Gun",
-	Callback = function()
-	end    
-})
-
-local Tab = Window:MakeTab({
-	Name = "Scam",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-
-local Section = Tab:AddSection({
-	Name = "Dupe Scam"
-	
-})
-	
-Tab:AddToggle({
-	Name = "Enable Duping",
-	Default = false,
-	Callback = function(Value)
-OrionLib:MakeNotification({
-	Name = "EternityK| Dupe",
-	Content = "Duping Enabled",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-
-	end    
-})
-
-Tab:AddTextbox({
-	Name = "Item You Wanna Dupe",
-	Default = "Weapon Name",
-	TextDisappear = false,
-	Callback = function(Value)
-OrionLib:MakeNotification({
-	Name = "Eternity | Dupe",
-	Content = "Item Confirmed!",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
-
-	end	  
-})
-
-Tab:AddButton({
-	Name = "Dupe Item",
-	Callback = function()
-      		OrionLib:MakeNotification({
-	Name = "EternityK | Dupe",
-	Content = "Items Duped! (if not wait 2-5 mins)",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
-
-  	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Trade Scam"
-	
-})
+--[[
+Name = <string> - The name of the section.
+]]
 
 Tab:AddToggle({
-	Name = "Enable Trade Scam",
+	Name = "Autogaurd",
 	Default = false,
 	Callback = function(Value)
-		      		OrionLib:MakeNotification({
-	Name = "EternityK | Trade Scam",
-	Content = "Trade Scam Has Been Enabled",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-
+		print(Value)
 	end    
 })
 
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
+Tab:AddToggle({
+	Name = "Fly To Dunk (Spam)",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+--[[
+Name = <string> - The name of the toggle.
+Default = <bool> - The default value of the toggle.
+Callback = <function> - The function of the toggle.
+]]
+
 Tab:AddTextbox({
-	Name = "Person You Wanna Trade",
+	Name = "Players Username",
 	Default = "Username",
-	TextDisappear = false,
+	TextDisappear = true,
 	Callback = function(Value)
-OrionLib:MakeNotification({
-	Name = "EternityK | Trade Scam",
-	Content = "Username Confirmed!",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
+		print(Value)
 	end	  
 })
 
-Tab:AddButton({
-	Name = "Force Trade",
-	Callback = function()
-      		OrionLib:MakeNotification({
-	Name = "EternityK | Trade Scam",
-	Content = "Starting Trade (Loading...)",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
+--[[
+Name = <string> - The name of the textbox.
+Default = <string> - The default value of the textbox.
+TextDisappear = <bool> - Makes the text disappear in the textbox after losing focus.
+Callback = <function> - The function of the textbox.
+]]
 
+Tab:AddButton({
+	Name = "Fling",
+	Callback = function()
+      		print("button pressed")
   	end    
 })
 
-local Tab = Window:MakeTab({
-	Name = "Godly Spawner",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-Tab:AddToggle({
-	Name = "Enable Spawner",
-	Default = false,
-	Callback = function(Value)
-	OrionLib:MakeNotification({
-	Name = "EternityK | Godly Spawner",
-	Content = "Spawner Enabled!",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-
-	end    
-})
-
-Tab:AddTextbox({
-	Name = "Item Your Spawning",
-	Default = "Godly Name",
-	TextDisappear = false,
-	Callback = function(Value)
-OrionLib:MakeNotification({
-	Name = "EternityK | Godly Spawner",
-	Content = "Godly Confirmed!",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
-	end	  
-})
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
 
 Tab:AddButton({
-	Name = "Spawn Item",
+	Name = "Freeze Player",
 	Callback = function()
-      		OrionLib:MakeNotification({
-	Name = "EternityK | Godly Spawner",
-	Content = "Spawning Item.... (ITEM SPAWNED)",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
-     end
-})
-
-local Tab = Window:MakeTab({
-	Name = "Credits",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-Tab:AddParagraph("YouTube","YouTube : EternityK")
-Tab:AddParagraph("Discord","Discord : svmaj")
-Tab:AddParagraph("Roblox","Roblox   : desireziah")
-
-local Section = Tab:AddSection({
-	Name = "Our Ad"
-
-})
-
-	Tab:AddButton({
-	Name = "Discord Server",
-	Callback = function()
-      		setclipboard("https://discord.com/invite/rPnsfGhAp9")
-
+      		print("button pressed")
   	end    
 })
 
-OrionLib:MakeNotification({
-	Name = "EternityK | Warning",
-	Content = "‼️ MUST BE OVER LEVEL 15 ‼️",
-	Image = "rbxassetid://4483345998",
-	Time = 20
-})
-
-OrionLib:MakeNotification({
-	Name = "EternityK | Warning",
-	Content = "‼️ MUST HAVE A GODLY TO USE MOST OF THE SCRIPT ‼️",
-	Image = "rbxassetid://4483345998",
-	Time = 20
-})
-
-OrionLib:MakeNotification({
-	Name = "EternityK | Warning",
-	Content = "‼️ THIS SCRIPT WILL NOT WORK IF YOU ARENT IN MM2 ‼️",
-	Image = "rbxassetid://4483345998",
-	Time = 20
-})
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/tobi437a/Scripts/refs/heads/main/a53c9c03f529d94ff43de35c.lua'))()
-OrionLib:Init()
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
