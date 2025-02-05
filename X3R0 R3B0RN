@@ -1,246 +1,106 @@
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/MrGalaxy10/shlexware-Orion/main/PrivateSource",true))()
-local Window = OrionLib:MakeWindow({Name = "XR Hub", HidePremium = false, IntroText = "X3R0 R3B0RN", SaveConfig = true, ConfigFolder = "OrionTest"})
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
---[[
-Name = <string> - The name of the UI.
-HidePremium = <bool> - Whether or not the user details shows Premium status or not.
-SaveConfig = <bool> - Toggles the config saving in the UI.
-ConfigFolder = <string> - The name of the folder where the configs are saved.
-IntroEnabled = <bool> - Whether or not to show the intro animation.
-IntroText = <string> - Text to show in the intro animation.
-IntroIcon = <string> - URL to the image you want to use in the intro animation.
-Icon = <string> - URL to the image you want displayed on the window.
-CloseCallback = <function> - Function to execute when the window is closed.
-]]
-
-local Tab = Window:MakeTab({
-	Name = "Z3R0 R3B0RN",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+local Window = Fluent:CreateWindow({
+    Title = "XR Hub " .. Fluent.Version,
+    SubTitle = "by @wockyrituals",
+    TabWidth = 195,
+    Size = UDim2.fromOffset(525, 325),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Rose",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
---[[
-Name = <string> - The name of the tab.
-Icon = <string> - The icon of the tab.
-PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
-]]
+--Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    Main = Window:AddTab({ Title = "X3R0 R3B0RN V1", Icon = "crosshair" }),
+    Settings = Window:AddTab({ Title = "S3TT1NG$", Icon = "settings" })
+}
 
-local Section = Tab:AddSection({
-	Name = "Silent Aim"
+Tabs.Main:AddParagraph({
+        Title = "Hoopz",
+        Content = ""
+    })
+
+local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Dropdown",
+        Values = {"realistic", "high arc", "low arc"},
+        Multi = false,
+        Default = 1,
+    })
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Camlock", Default = false })
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Reach", Default = false })
+
+local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "Reach Distance",
+        Description = "",
+        Default = 5,
+        Min = 5,
+        Max = 25,
+        Rounding = 1,
+        Callback = function(Value)
+            print("Slider was changed:", Value)
+        end
+    })
+
+    Slider:OnChanged(function(Value)
+        print("Slider changed:", Value)
+    end)
+    
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Ball Magnet", Default = false })
+    
+    local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "Magnet Distance",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 15,
+        Rounding = 1,
+        Callback = function(Value)
+            print("Slider was changed:", Value)
+        end
+    })
+
+    Slider:OnChanged(function(Value)
+        print("Slider changed:", Value)
+    end)
+    
+    -- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- InterfaceManager (Allows you to have a interface managment system)
+
+-- Hand the library over to our managers
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Xero",
+    Content = "The script has been loaded.",
+    Duration = 8
 })
 
---[[
-Name = <string> - The name of the section.
-]]
-
-Tab:AddToggle({
-	Name = "High Arc",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddToggle({
-	Name = "Low Arc",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddToggle({
-	Name = "Realistic Arc",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-local Section = Tab:AddSection({
-	Name = "Mags"
-})
-
---[[
-Name = <string> - The name of the section.
-]]
-
-Tab:AddToggle({
-	Name = "Ball Reach",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddSlider({
-	Name = "Reach Distance",
-	Min = 5,
-	Max = 25,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "",
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the slider.
-Min = <number> - The minimal value of the slider.
-Max = <number> - The maxium value of the slider.
-Increment = <number> - How much the slider will change value when dragging.
-Default = <number> - The default value of the slider.
-ValueName = <string> - The text after the value number.
-Callback = <function> - The function of the slider.
-]]
-
-Tab:AddToggle({
-	Name = "Ball Magnet",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddSlider({
-	Name = "Magnet Distance",
-	Min = 5,
-	Max = 50,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "",
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the slider.
-Min = <number> - The minimal value of the slider.
-Max = <number> - The maxium value of the slider.
-Increment = <number> - How much the slider will change value when dragging.
-Default = <number> - The default value of the slider.
-ValueName = <string> - The text after the value number.
-Callback = <function> - The function of the slider.
-]]
-
-local Tab = Window:MakeTab({
-	Name = "X3R0 R3B0RN V2",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
---[[
-Name = <string> - The name of the tab.
-Icon = <string> - The icon of the tab.
-PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
-]]
-
-local Section = Tab:AddSection({
-	Name = "Features"
-})
-
---[[
-Name = <string> - The name of the section.
-]]
-
-Tab:AddToggle({
-	Name = "Autogaurd",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddToggle({
-	Name = "Fly To Dunk (Spam)",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
---[[
-Name = <string> - The name of the toggle.
-Default = <bool> - The default value of the toggle.
-Callback = <function> - The function of the toggle.
-]]
-
-Tab:AddTextbox({
-	Name = "Players Username",
-	Default = "Username",
-	TextDisappear = true,
-	Callback = function(Value)
-		print(Value)
-	end	  
-})
-
---[[
-Name = <string> - The name of the textbox.
-Default = <string> - The default value of the textbox.
-TextDisappear = <bool> - Makes the text disappear in the textbox after losing focus.
-Callback = <function> - The function of the textbox.
-]]
-
-Tab:AddButton({
-	Name = "Fling",
-	Callback = function()
-      		print("button pressed")
-  	end    
-})
-
---[[
-Name = <string> - The name of the button.
-Callback = <function> - The function of the button.
-]]
-
-Tab:AddButton({
-	Name = "Freeze Player",
-	Callback = function()
-      		print("button pressed")
-  	end    
-})
-
---[[
-Name = <string> - The name of the button.
-Callback = <function> - The function of the button.
-]]
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
+SaveManager:LoadAutoloadConfig()
