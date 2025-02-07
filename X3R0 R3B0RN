@@ -3,23 +3,25 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "XR Hub " .. Fluent.Version,
+    Title = "Xero Hub" .. Fluent.Version,
     SubTitle = "by @wockyrituals",
     TabWidth = 195,
     Size = UDim2.fromOffset(525, 325),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Rose",
+    Theme = "Aqua",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    Main = Window:AddTab({ Title = "X3R0 R3B0RN V1", Icon = "crosshair" }),
-    Settings = Window:AddTab({ Title = "S3TT1NG$", Icon = "settings" })
+    Main = Window:AddTab({ Title = "Xero Reborn V1", Icon = "crosshair" }),
+    V2 = Window:AddTab({ Title = "Execute V2", Icon = "lock" }),
+    V3 = Window:AddTab({ Title = "Execute V3", Icon = "lock" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
 Tabs.Main:AddParagraph({
-        Title = "Hoopz",
+        Title = "H  O  O  P  Z",
         Content = ""
     })
 
@@ -31,6 +33,8 @@ local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
     })
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Camlock", Default = false })
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Indicator", Default = false })
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Reach", Default = false })
 
@@ -68,6 +72,60 @@ local Slider = Tabs.Main:AddSlider("Slider", {
         print("Slider changed:", Value)
     end)
     
+    Tabs.V2:AddButton({
+        Title = "Execute V2",
+        Description = "Paid Version",
+        Callback = function()
+            Window:Dialog({
+                Title = "Execute V2?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "✅️",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/Test/refs/heads/main/CoinCham"))()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "❎️",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+    Tabs.V3:AddButton({
+        Title = "Execute V3?",
+        Description = "Expensive Version",
+        Callback = function()
+            Window:Dialog({
+                Title = "Execute V3?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "✅️",
+                        Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintfulSinners/refs/heads/main/MM2ScriptV4"))()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "❎️",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+    
+    
+    
     -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
@@ -98,7 +156,7 @@ Window:SelectTab(1)
 Fluent:Notify({
     Title = "Xero",
     Content = "The script has been loaded.",
-    Duration = 8
+    Duration = 5
 })
 
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
