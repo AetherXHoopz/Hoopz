@@ -21,29 +21,44 @@ local Tabs = {
 }
 
 Tabs.Main:AddParagraph({
-        Title = "H  O  O  P  Z",
+        Title = "S H O O T I N G",
         Content = ""
     })
 
 local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
-        Title = "Dropdown",
-        Values = {"realistic", "high arc", "low arc"},
+        Title = "Shooting Type",
+        Values = {"Silent Aim", "Silent Aim V2", "High Arc", "Low Arc"},
         Multi = false,
         Default = 1,
     })
 
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Camlock", Default = false })
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Shooting", Default = false })
 
+Tabs.Main:AddParagraph({
+        Title = "I N D I C A T O R",
+        Content = ""
+    })
+    
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Indicator", Default = false })
 
+local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
+        Title = "Indicator Color",
+        Default = Color3.fromRGB(96, 205, 255)
+    })
+
+Tabs.Main:AddParagraph({
+        Title = "M A G S",
+        Content = ""
+    })
+    
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Reach", Default = false })
 
 local Slider = Tabs.Main:AddSlider("Slider", {
         Title = "Reach Distance",
         Description = "",
-        Default = 5,
-        Min = 5,
-        Max = 25,
+        Default = 0,
+        Min = 0,
+        Max = 15,
         Rounding = 1,
         Callback = function(Value)
             print("Slider was changed:", Value)
@@ -61,7 +76,7 @@ local Slider = Tabs.Main:AddSlider("Slider", {
         Description = "",
         Default = 0,
         Min = 0,
-        Max = 15,
+        Max = 25,
         Rounding = 1,
         Callback = function(Value)
             print("Slider was changed:", Value)
@@ -99,7 +114,7 @@ local Slider = Tabs.Main:AddSlider("Slider", {
     })
 
     Tabs.V3:AddButton({
-        Title = "Execute V3?",
+        Title = "Execute V3",
         Description = "Expensive Version",
         Callback = function()
             Window:Dialog({
