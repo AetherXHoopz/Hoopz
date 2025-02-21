@@ -1,181 +1,254 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Version = "1.4.0"
+local WindUI = loadstring(game:HttpGet("https://tree-hub.vercel.app/api/UI/WindUI/" .. Version))()
 
-local Window = Fluent:CreateWindow({
-    Title = "Xero Hub" .. Fluent.Version,
-    SubTitle = "by @wockyrituals",
-    TabWidth = 195,
-    Size = UDim2.fromOffset(525, 325),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Aqua",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+local Window = WindUI:CreateWindow({
+    Title = "XR Hub", -- UI Title
+    Icon = "atom", -- Url or rbxassetid or lucide
+    Author = "Rituals & Nett", -- Author & Creator
+    Folder = "CloudHub", -- Folder name for saving data (And key)
+    Size = UDim2.fromOffset(525, 325), -- UI Size
+    KeySystem = { -- Creates key system
+        Key = "skid", -- key
+        Note = "Key = Discord", -- Note
+        URL = "https://discord.gg/RZCwnvmAmv", -- URL To get key (example: Discord)
+        SaveKey = true, -- Saves the key in the folder specified above
+    },
+    Transparent = true, -- UI Transparency
+    Theme = "Dark", -- UI Theme
+    SideBarWidth = 175, -- UI Sidebar Width (number)
+    HasOutline = true, -- Adds Outlines to the window
 })
 
---Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
-local Tabs = {
-    Main = Window:AddTab({ Title = "Xero Reborn V1", Icon = "crosshair" }),
-    V2 = Window:AddTab({ Title = "Execute V2", Icon = "lock" }),
-    V3 = Window:AddTab({ Title = "Execute V3", Icon = "lock" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
-}
-
-Tabs.Main:AddParagraph({
-        Title = "S H O O T I N G",
-        Content = ""
-    })
-
-local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
-        Title = "Shooting Type",
-        Values = {"Silent Aim", "Silent Aim V2", "High Arc", "Low Arc"},
-        Multi = false,
-        Default = 1,
-    })
-
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Shooting", Default = false })
-
-Tabs.Main:AddParagraph({
-        Title = "I N D I C A T O R",
-        Content = ""
-    })
-    
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Indicator", Default = false })
-
-local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
-        Title = "Indicator Color",
-        Default = Color3.fromRGB(96, 205, 255)
-    })
-
-Tabs.Main:AddParagraph({
-        Title = "M A G S",
-        Content = ""
-    })
-    
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Reach", Default = false })
-
-local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Reach Distance",
-        Description = "",
-        Default = 0,
-        Min = 0,
-        Max = 20,
-        Rounding = 1,
-        Callback = function(Value)
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintaScriptV2/refs/heads/main/MM2_V3"))()
-            print("Slider was changed:", Value)
-        end
-    })
-
-    Slider:OnChanged(function(Value)
-        print("Slider changed:", Value)
-    end)
-    
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Enable Ball Magnet", Default = false })
-    
-    local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Magnet Distance",
-        Description = "",
-        Default = 0,
-        Min = 0,
-        Max = 25,
-        Rounding = 1,
-        Callback = function(Value)
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintaScriptV2/refs/heads/main/MM2_V3"))()
-            print("Slider was changed:", Value)
-        end
-    })
-
-    Slider:OnChanged(function(Value)
-        print("Slider changed:", Value)
-    end)
-    
-    Tabs.V2:AddButton({
-        Title = "Execute V2",
-        Description = "Paid Version",
-        Callback = function()
-            Window:Dialog({
-                Title = "Execute V2?",
-                Content = "",
-                Buttons = {
-                    {
-                        Title = "✅️",
-                        Callback = function()
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/Test/refs/heads/main/CoinCham"))()
-                            print("Confirmed the dialog.")
-                        end
-                    },
-                    {
-                        Title = "❎️",
-                        Callback = function()
-                            print("Cancelled the dialog.")
-                        end
-                    }
-                }
-            })
-        end
-    })
-
-    Tabs.V3:AddButton({
-        Title = "Execute V3",
-        Description = "Expensive Version",
-        Callback = function()
-            Window:Dialog({
-                Title = "Execute V3?",
-                Content = "",
-                Buttons = {
-                    {
-                        Title = "✅️",
-                        Callback = function()
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintfulSinners/refs/heads/main/MM2ScriptV4"))()
-                            print("Confirmed the dialog.")
-                        end
-                    },
-                    {
-                        Title = "❎️",
-                        Callback = function()
-                            print("Cancelled the dialog.")
-                        end
-                    }
-                }
-            })
-        end
-    })
-    
-    
-    
-    -- Addons:
--- SaveManager (Allows you to have a configuration system)
--- InterfaceManager (Allows you to have a interface managment system)
-
--- Hand the library over to our managers
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
-
--- Ignore keys that are used by ThemeManager.
--- (we dont want configs to save themes, do we?)
-SaveManager:IgnoreThemeSettings()
-
--- You can add indexes of elements the save manager should ignore
-SaveManager:SetIgnoreIndexes({})
-
--- use case for doing it this way:
--- a script hub could have themes in a global folder
--- and game configs in a separate folder per game
-InterfaceManager:SetFolder("FluentScriptHub")
-SaveManager:SetFolder("FluentScriptHub/specific-game")
-
-InterfaceManager:BuildInterfaceSection(Tabs.Settings)
-SaveManager:BuildConfigSection(Tabs.Settings)
-
-
-Window:SelectTab(1)
-
-Fluent:Notify({
-    Title = "Xero",
-    Content = "The script has been loaded.",
-    Duration = 5
+-- General Tab
+local Tab1 = Window:Tab({
+    Title = "General",
+    Icon = "globe", -- lucide or rbxassetid
 })
 
--- You can use the SaveManager:LoadAutoloadConfig() to load a config
--- which has been marked to be one that auto loads!
-SaveManager:LoadAutoloadConfig()
+-- Section for shooting
+local Section1 = Tab1:Section({
+    Title = "Shooting"
+})
+
+-- Dropdown for Shooting Type
+local Dropdown = Tab1:Dropdown({
+    Title = "Shooting Type",
+    Desc = "",
+    Value = "Tab 1",
+    Multi = false,
+    AllowNone = true,
+    Values = {
+        "Silent Aim", "Camlock"
+    },
+    Callback = function(Value)
+        print(Value)  -- Corrected the callback to print the dropdown selection
+    end
+})
+
+-- Toggle for shooting enable
+local Toggle1 = Tab1:Toggle({
+    Title = "Shooting Enable",
+    Desc = "",
+    Value = true,
+    Callback = function(state)
+        print(state)
+    end,
+})
+
+-- Section for Reach
+local Section2 = Tab1:Section({
+    Title = "Reach & Mags"
+})
+
+-- Toggle for reach enable
+local Toggle2 = Tab1:Toggle({
+    Title = "Enable Reach",
+    Desc = "",
+    Value = true,
+    Callback = function(state)
+        print(state)
+    end,
+})
+
+-- Slider for Reach Distance
+local Slider1 = Tab1:Slider({
+    Title = "Reach Distance",
+    Step = 1,
+    Value = {
+        Min = 0,
+        Max = 75,
+        Default = 0,
+    },
+    Callback = function(value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local runService = game:GetService("RunService")
+
+        local MAX_DISTANCE = 75 -- Reach distance
+        local MAGNET_STRENGTH = 0.5 -- How much the ball is pulled towards the player when within reach
+
+        -- Function to simulate touch between two parts (if needed for other purposes)
+        local function simulateTouch(part1, part2)
+            firetouchinterest(part1, part2, 0)
+            task.wait(0.05)
+            firetouchinterest(part1, part2, 1)
+        end
+
+        -- Function to find the nearest ball within the reach distance
+        local function getNearestBall()
+            local nearestBall = nil
+            local nearestDistance = MAX_DISTANCE
+            local searchScope = workspace:GetPartBoundsInBox(humanoidRootPart.CFrame, Vector3.new(MAX_DISTANCE, MAX_DISTANCE, MAX_DISTANCE))
+
+            for _, object in ipairs(searchScope) do
+                if object:IsA("BasePart") and object.Name:lower() == "ball" then
+                    local distance = (object.Position - humanoidRootPart.Position).Magnitude
+                    if distance <= nearestDistance then
+                        nearestDistance = distance
+                        nearestBall = object
+                    end
+                end
+            end
+            return nearestBall, nearestDistance
+        end
+
+        runService.Heartbeat:Connect(function()
+            local ball, distance = getNearestBall()
+
+            if ball then
+                -- Reach: Check if the ball is within the maximum distance
+                if distance <= value then  -- Use the slider value for max reach distance
+                    -- Magnet: Apply force to pull the ball towards the player
+                    local directionToPlayer = (humanoidRootPart.Position - ball.Position).unit
+                    local pullVector = directionToPlayer * MAGNET_STRENGTH
+                    ball.Velocity = ball.Velocity + pullVector  -- Apply a small force towards the player
+                    
+                    -- Optionally simulate touch if needed
+                    simulateTouch(humanoidRootPart, ball)
+                    
+                    -- Print information (for debugging)
+                    print("Touched nearest ball:", ball.Name, "at distance:", distance)
+                end
+            end
+        end)
+    end
+})
+
+-- Toggle for Magazine
+local Toggle3 = Tab1:Toggle({
+    Title = "Enable Mag",
+    Desc = "",
+    Value = true,
+    Callback = function(state)
+        print(state)
+    end,
+})
+
+-- Slider for Mag Distance
+local Slider2 = Tab1:Slider({
+    Title = "Mags Distance",
+    Step = 1,
+    Value = {
+        Min = 0,
+        Max = 10,
+        Default = 0,
+    },
+    Callback = function(value)
+        local function applyMagnetEffect(ball)
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+            local directionToPlayer = (humanoidRootPart.Position - ball.Position).unit
+            local pullVector = directionToPlayer * value  -- Apply the slider value to magnet strength
+            ball.Velocity = ball.Velocity + pullVector  -- Apply a small force towards the player
+        end
+
+        local runService = game:GetService("RunService")
+        runService.Heartbeat:Connect(function()
+            local ball, distance = getNearestBall()
+
+            if ball then
+                -- Reach: Check if the ball is within the maximum distance
+                if distance <= value then  -- Use the slider value for max reach distance
+                    -- Magnet: Apply force to pull the ball towards the player
+                    applyMagnetEffect(ball)
+                    
+                    -- Optionally simulate touch if needed
+                    simulateTouch(humanoidRootPart, ball)
+                    
+                    -- Print information (for debugging)
+                    print("Touched nearest ball:", ball.Name, "at distance:", distance)
+                end
+            end
+        end)
+    end
+})
+
+-- Section for indicator
+local Section3 = Tab1:Section({
+    Title = "Indicator"
+})
+
+local Colorpicker = Tab1:Colorpicker({
+    Title = "Indicator Color",
+    Desc = "",
+    Transparency = 0.5,
+    Default = Color3.fromRGB(96, 205, 255),
+    Callback = function(color, transparency)
+        print("Color: R: " .. math.floor(color.R * 255) .. " G: " .. math.floor(color.G * 255) .. " B: " .. math.floor(color.B * 255) .. " Transparency: " .. transparency)
+    end
+})
+
+local Toggle4 = Tab1:Toggle({
+    Title = "Enable Indicator",
+    Desc = "",
+    Value = true,
+    Callback = function(state)
+        print(state)
+    end,
+})
+
+Window:Divider()
+
+-- V2 Tab
+local Tab2 = Window:Tab({
+    Title = "V2",
+    Icon = "lock", -- lucide or rbxassetid
+})
+
+local Button = Tab2:Button({
+    Title = "Execute V2",
+    Desc = "",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/Test/refs/heads/main/CoinCham"))()
+        print("Clicked!")
+    end,
+})
+
+Window:Divider()
+
+-- V3 Tab
+local Tab3 = Window:Tab({
+    Title = "V3",
+    Icon = "lock", -- lucide or rbxassetid
+})
+
+local Button = Tab3:Button({
+    Title = "Execute V3",
+    Desc = "",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/XeroReborn/SaintfulSinners/refs/heads/main/MM2ScriptV4"))()
+        print("Clicked!")
+    end,
+})
+
+WindUI:AddTheme({
+    Name = "XRH",
+    Accent = "#E31752",
+    Outline = "#84E8FF",
+    Text = "#84E8FF",
+    PlaceholderText = "#84E8FF"
+})
+
+WindUI:SetTheme("XRH")
